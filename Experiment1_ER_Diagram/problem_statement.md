@@ -1,4 +1,5 @@
-# ER Diagram Workshop – Submission Template
+# NAME: KIRTHICK SHA R
+# REG.NO: 212224230124
 
 ## Objective
 To understand and apply ER modeling concepts by creating ER diagrams for real-world applications.
@@ -22,31 +23,35 @@ FlexiFit Gym wants a database to manage its members, trainers, and fitness progr
 - Payments tracked for memberships and sessions.
 
 ### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_fitness.png)
+
+<img width="812" height="604" alt="image" src="https://github.com/user-attachments/assets/3e23f13a-5a60-448f-8ffd-6e02b4db6ad5" />
+
 
 ### Entities and Attributes
 
 | Entity | Attributes (PK, FK) | Notes |
 |--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+| Member       |  MemberID (PK), Name, Age, MembershipType, StartDate                  |   Stores details of gym members    |
+| Program       |  ProgramID (PK), ProgramName, Type                  |Represents fitness programs (Yoga, Zumba, etc.)       |
+| Trainer       |  TrainerID (PK), Name, Expertise                  |  Trainers who conduct/lead programs     |
+| Session       |   SessionID (PK), Date, TrainerID (FK)                 | Individual sessions (group/personal training)      |
+| Payment       |  PaymentID (PK), Account, Amount, Date                  |  Records payments for memberships or sessions     |
 
 ### Relationships and Constraints
 
 | Relationship | Cardinality | Participation | Notes |
 |--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+| Member – Program             |   M:N         | Optional for Member, Mandatory for Program        | Member may or may not join programs      |
+|  Trainer – Program       |   M:N          |  Mandatory for both             | Trainer may or may not run Programs      |
+|  Member – Payment            |   1:N        |  Mandatory for Payment             |Payments belong to members |
 
 ### Assumptions
-- 
-- 
-- 
+- Every member must enroll in at least one program.
+
+- Each program must have at least one trainer assigned.
+
+- Payments are always linked to members (no anonymous payments).
+ 
 
 ---
 
@@ -64,32 +69,34 @@ The Central Library wants to manage book lending and cultural events.
 - Overdue fines apply for late returns.
 
 ### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_library.png)
+
+<img width="803" height="605" alt="image" src="https://github.com/user-attachments/assets/9a465808-e0af-496b-afcd-07de8e2e3192" />
 
 ### Entities and Attributes
 
 | Entity | Attributes (PK, FK) | Notes |
 |--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+| Member       |  MemberID (PK), Name, Age                  |  Library members who borrow books and attend events     |
+| Book       |  BookID (PK), Title, Author, Category                  | Books available for borrowing      |
+| Event       |  EventID (PK), ProgramID, Date                  | Events organized by the library      |
+|  Room      |    RoomID (PK), Name                | Rooms for study or events      |
+|  Speaker      | SpeakerID (PK), Name                   | Speakers/authors who present at events      |
 
 ### Relationships and Constraints
 
 | Relationship | Cardinality | Participation | Notes |
 |--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+|  Member – Book            |  M:N          |   Mandatory for Book            | Members borrow books      |
+|  Event – Room            |         M:N            | Mandatory for Event|      Events are held in rooms|
+|   Event – Speaker          |   M:N            |Mandatory for Event  |   Events have speakers  |
 
 ### Assumptions
-- 
-- 
-- 
+- Each book can be borrowed by one member at a time.
 
+- Each event must have at least one speaker and one booked room.
+
+- Overdue fines apply only when books are not returned on time.
+  
 ---
 
 # Scenario C: Restaurant Table Reservation & Ordering
@@ -106,31 +113,36 @@ A popular restaurant wants to manage reservations, orders, and billing.
 - Waiters assigned to serve reservations.
 
 ### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_restaurant.png)
+
+<img width="833" height="502" alt="image" src="https://github.com/user-attachments/assets/8ecf07fd-af9e-48f6-b5bc-2fac8dcfb3b2" />
+
+
 
 ### Entities and Attributes
 
 | Entity | Attributes (PK, FK) | Notes |
 |--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+|  Customer      |CustomerID (PK), Name, Phone_No |  Customers reserving tables or ordering food     |
+|  Waiter      |   WaiterID (PK), Name|  Waiters serve reservations/orders            |
+| Reservation/Order       |  OrderID (PK), Date, Time, Guests | Customer reservations and placed orders                  |
+| Dish       |   DishID (PK), Name, CategoryNo (FK)|Dishes available to order                     |
+| Category       |  CategoryNo (PK), CategoryName| Dish classification (Starter, Main, Dessert)             |
+|Bill | BillID (PK), Amount, Total|Bill generated for each order                     |
 
 ### Relationships and Constraints
 
 | Relationship | Cardinality | Participation | Notes |
 |--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+| Customer – Waiter             |  1:1          |Mandatory               | Each reservation handled by one waiter      |
+|  Order – Dishes            |   M:N         |   Mandatory for order            |     An order contains many dishes  |
+|  Order – Bill            |    1:M        |   Mandatory for Bill            |  Each order generates one bill     |
 
 ### Assumptions
-- 
-- 
-- 
+- Each reservation/order is served by one waiter.
+
+- A dish belongs to exactly one category.
+
+- Bills are generated only after placing an order.
 
 ---
 
