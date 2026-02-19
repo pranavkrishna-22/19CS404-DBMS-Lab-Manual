@@ -1,5 +1,5 @@
-# NAME: KIRTHICK SHA R
-# REG.NO: 212224230124
+# NAME: PRANAV KRISHNA T 
+# REG.NO: 212224040241
 
 ## Objective
 To understand and apply ER modeling concepts by creating ER diagrams for real-world applications.
